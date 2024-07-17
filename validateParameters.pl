@@ -1,3 +1,17 @@
+# core modules
+use Encode qw();
+use JSON;
+
+# ----------- OBJECT DEPENDENCIES ----------- #
+
+    my $TicketObject       = $Kernel::OM->Get('Kernel::System::Ticket');
+    my $ArticleObject      = $Kernel::OM->Get('Kernel::System::Ticket::Article');
+    my $DBObject 	       = $Kernel::OM->Get('Kernel::System::DB');
+	my $CustomerUserObject = $Kernel::OM->Get('Kernel::System::CustomerUser');
+    my $ResponseObject     = $Kernel::OM->Get('Kernel::System::Web::Response');
+
+# ----------- OBJECT DEPENDENCIES ----------- #
+
 sub _ValidateParameters {
     my ($Self, %Param) = @_;
 
