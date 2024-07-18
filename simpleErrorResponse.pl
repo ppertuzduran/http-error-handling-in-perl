@@ -25,10 +25,17 @@ sub _SimpleErrorResponse {
         $Output  # Body content
     );
 
+    # Determine the summary message based on the status code
+    my $Summary = $Param{StatusCode}  == 400 ? 'Bad Request'
+                 : $Param{StatusCode} == 401 ? 'Unauthorized'
+                 : $Param{StatusCode} == 404 ? 'Not Found'
+                 : $Param{StatusCode} == 409 ? 'Conflict'
+                 : 'Error';
+
     # Log the error
     $Self->{DebuggerObject}->DebugLog(
         DebugLevel => 'info',
-        Summary    => 'Bad Request',
+        Summary    => $Summary,
         Data       => {
             ErrorCode    => $Param{ErrorCode},
             Field        => $Param{Field},
